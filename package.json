@@ -1,0 +1,11 @@
+{
+  "name": "com.gilzoide.get-component-context-menu",
+  "displayName": "GetComponent Context Menu",
+  "version": "1.0.0",
+  "description": "Context menu items for setting up Component references based on GetComponent(s), GetComponent(s)InChildren and GetComponent(s)InParent methods",
+  "homepage": "https://github.com/gilzoide/unity-get-component-context-menu",
+  "license": "Unlicense",
+  "author": {
+    "name": "Gil Barbosa Reis"
+  }
+}
