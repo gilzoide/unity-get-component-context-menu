@@ -13,10 +13,12 @@ namespace Gilzoide.GetComponentContextMenu.Editor
         private static readonly GUIContent _getComponentTitle = new GUIContent("GetComponent");
         private static readonly GUIContent _getComponentInChildrenTitle = new GUIContent("GetComponentInChildren");
         private static readonly GUIContent _getComponentInParentTitle = new GUIContent("GetComponentInParent");
+        private static readonly GUIContent _findObjectOfTypeTitle = new GUIContent("FindObjectOfType");
 
         private static readonly GUIContent _getComponentsTitle = new GUIContent("GetComponents");
         private static readonly GUIContent _getComponentsInChildrenTitle = new GUIContent("GetComponentsInChildren");
         private static readonly GUIContent _getComponentsInParentTitle = new GUIContent("GetComponentsInParent");
+        private static readonly GUIContent _findObjectsOfTypeTitle = new GUIContent("FindObjectsOfType");
 
         [InitializeOnLoadMethod]
         private static void Initialize()
@@ -55,6 +57,12 @@ namespace Gilzoide.GetComponentContextMenu.Editor
                     currentProperty.serializedObject.ApplyModifiedProperties();
                 });
 
+                menu.AddItem(_findObjectOfTypeTitle, false, () =>
+                {
+                    currentProperty.objectReferenceValue = Object.FindObjectOfType(objectType, true);
+                    currentProperty.serializedObject.ApplyModifiedProperties();
+                });
+
                 menu.AddSeparator("");
             }
             else if (property.isArray
@@ -80,6 +88,13 @@ namespace Gilzoide.GetComponentContextMenu.Editor
                 {
                     currentProperty.ClearArray();
                     currentProperty.InsertObjectsInArray(component.GetComponentsInParent(objectType, true));
+                    currentProperty.serializedObject.ApplyModifiedProperties();
+                });
+
+                menu.AddItem(_findObjectsOfTypeTitle, false, () =>
+                {
+                    currentProperty.ClearArray();
+                    currentProperty.InsertObjectsInArray(Object.FindObjectsOfType(objectType, true));
                     currentProperty.serializedObject.ApplyModifiedProperties();
                 });
 
